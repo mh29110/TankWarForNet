@@ -46,19 +46,10 @@ package
 			/* screens navigator */
 			
 			
-			/*initialize pureMvc frameWork*/
-			MyFacade.getInstance().startUp(this);
-			
-			/* socket*/
-			ClientSocket.getInstance().connect();
-			
-			
 			/* assets manager */
 			assets = new AssetManager();
 			assets.verbose = true ;
-			assets.enqueue(
-				"superman.jpg"
-			);
+			assets.enqueue(	"superman.jpg");
 			assets.loadQueue(function(ratio:Number):void{//侦听下载比例
 				trace(ratio);
 				if(ratio == 1){
@@ -66,6 +57,15 @@ package
 				}
 			}
 			);
+			
+			/*initialize pureMvc frameWork*/
+			MyFacade.getInstance().startUp(this);
+			
+			/* socket*/
+			ClientSocket.getInstance().connect();
+			
+			
+			
 			
 		}
 	}

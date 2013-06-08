@@ -1,10 +1,14 @@
 package com.leeGame.views
 {
+	import com.leeGame.controllers.UserOperaterCommand;
 	import com.leeGame.views.components.GameView;
+	import com.leeGame.views.components.objects.Player;
+	import com.leeGame.views.components.objects.skinsManager.SkinManager;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import starling.events.Event;
 	import starling.events.KeyboardEvent;
 	import starling.events.TouchEvent;
 	
@@ -15,10 +19,22 @@ package com.leeGame.views
 		{
 			super(mediatorName, viewComponent);
 			
+			configUI();
+		}
+		
+		private function configUI():void
+		{
+			facade.registerCommand(UserOperaterCommand.NAME,UserOperaterCommand);
+			
 			gameView.stage.addEventListener(KeyboardEvent.KEY_DOWN,_keydown);
 			
 			gameView.addEventListener(TouchEvent.TOUCH,onTouch);
-				
+			
+			var player:Player = new Player(new SkinManager(SkinManager.PLAYER));
+			player.x = player.y = 400;
+			gameView.addChild(player);
+			facade.registerMediator(new MyTankerMediator(MyTankerMediator.NAME,player));
+			
 		}
 		
 		private function onTouch(e:TouchEvent):void
@@ -29,6 +45,7 @@ package com.leeGame.views
 		private function _keydown(e:KeyboardEvent):void
 		{
 			trace(e.keyCode, String.fromCharCode(e.charCode));
+			sendNotification(UserOperaterCommand.NAME,e.keyCode);
 		}
 		
 		public function get gameView():GameView

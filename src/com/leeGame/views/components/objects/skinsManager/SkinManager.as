@@ -29,7 +29,16 @@ package com.leeGame.views.components.objects.skinsManager
 		private var i :int = 1;
 		private   var timer:Timer ;
 		private var p :Point  ;
-		private var skinIndex :int =0 ;//使用传参来制作皮肤，0代表源图第一行坦克，1代表源图第二行坦克
+		
+		private var skinIndex :int =0 ;
+		
+		public static var PLAYER:uint = 1;
+		public static var STONE:uint = 2;
+		public static var BACK:uint = 3;
+		public static var ADDSPEED:uint = 4;
+		public static var BLOOD:uint = 5;
+		public static var DISAPPEAR:uint = 6;
+		public static var SHOOT:uint = 7;
 		
 		public function SkinManager(skin_index:int =1 )
 		{
@@ -38,25 +47,25 @@ package com.leeGame.views.components.objects.skinsManager
 			src= Main.assets.getTexture("superman");//源位图
 			switch (skinIndex)//万恶的源图排序混乱，只能单个表示，最好排序并用编号提出，避免写SWITCH；
 			{
-				case 1:
+				case SkinManager.PLAYER:
 					bmpd = Texture.fromTexture(src ,new Rectangle(32,32,32,32));
 					break;
-				case Config.STONE:
+				case SkinManager.STONE:
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*3,3*32,32,32));
 					break;
-				case Config.BACK:
+				case SkinManager.BACK:
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*0,0*32,32,32));
 					break;
-				case Config.ADDSPEED://6
+				case SkinManager.ADDSPEED://6
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*6,2*32,32,32));
 					break;//因为漏打了这个BREAK；导致皮肤叠加，修BUG了一下午
-				case Config.BLOOD://7
+				case SkinManager.BLOOD://7
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*3,2*32,32,32));
 					break;
-				case Config.DISAPPEAR ://8隐身道具
+				case SkinManager.DISAPPEAR ://8隐身道具
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*1,0*32,32,32));
 					break;
-				case Config.SHOOT://9疾射道具
+				case SkinManager.SHOOT://9疾射道具
 					bmpd = Texture.fromTexture(src ,new Rectangle(32*4,2*32,32,32));
 					break;
 			}

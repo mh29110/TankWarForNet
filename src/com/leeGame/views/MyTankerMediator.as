@@ -1,5 +1,9 @@
 package com.leeGame.views
 {
+	import com.leeGame.controllers.UserOperaterCommand;
+	import com.leeGame.models.PlayerVOProxy;
+	import com.leeGame.views.components.objects.Player;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
@@ -19,20 +23,24 @@ package com.leeGame.views
 			super(NAME, viewComponent);
 		}
 		
-		override public function getViewComponent():Object
+		public function get player():Player
 		{
-			// TODO Auto Generated method stub
-			return super.getViewComponent();
+			return super.getViewComponent() as Player;
 		}
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			super.handleNotification(notification);
+			switch(notification.getName()){
+				case PlayerVOProxy.CHANGEDIR:
+					player.dir = (facade.retrieveProxy(PlayerVOProxy.NAME) as PlayerVOProxy).playerVo.dir;
+					break;
+			}
 		}
+		
 		
 		override public function listNotificationInterests():Array
 		{
-			return super.listNotificationInterests();
+			return [PlayerVOProxy.CHANGEDIR];
 		}
 		
 		override public function onRemove():void
