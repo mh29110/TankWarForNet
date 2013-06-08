@@ -1,5 +1,8 @@
 package com.leeGame.views
 {
+	import com.leeGame.controllers.LoginResultCommand;
+	import com.leeGame.views.components.GameView;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -34,14 +37,21 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			// TODO Auto Generated method stub
-			super.handleNotification(notification);
+			switch(notification.getBody()){
+				case LoginResultCommand.NAME:
+					if(notification.getBody().result == 1){
+						var game:GameView = new GameView();
+						appMain.addChild(game);
+						facade.registerMediator(new GameViewMediator(GameViewMediator.NAME,game));
+					}
+					break;
+			}
 		}
 		
 		override public function listNotificationInterests():Array
 		{
 			// TODO Auto Generated method stub
-			return super.listNotificationInterests();
+			return [LoginResultCommand.NAME];
 		}
 		
 	}

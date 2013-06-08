@@ -24,7 +24,11 @@ package com.leeGame.controllers
 			var main:Main = notification.getBody() as Main;
 			facade.registerMediator(new AppMediator(AppMediator.Name,main));
 trace((facade.retrieveMediator(AppMediator.Name).getViewComponent() as Main).VERSION);
+
+
 			
+
+
 			var login:LoginView = new LoginView();
 			main.stage.addChild(login);
 			facade.registerMediator(new LoginViewMediator(LoginViewMediator.NAME,login));

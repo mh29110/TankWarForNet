@@ -1,5 +1,7 @@
 package com.leeGame.netBusiness
 {
+	import com.leeGame.controllers.LoginResultCommand;
+	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
@@ -8,22 +10,32 @@ package com.leeGame.netBusiness
 
 	public class ClientSocket
 	{
-		private var clientSocket:Socket;
+		private var client:Socket;
 		public function ClientSocket()
 		{
-			clientSocket = new Socket();
+			client = new Socket();
 			addEventListeners();
 		}
 		
 		public function connect():void{
-			if (clientSocket.connected) {
+			if (client.connected) {
 				return;
 			}
 			
-			clientSocket.connect("127.0.0.1",5566);
+			client.connect("127.0.0.1",5566);
 		}
-		public function sendMessage():void{
+		public function sendMessage(cmd:uint,vo:Object):void{
 			/* 发送数据 */
+			switch (cmd){
+				/* 10001 申请登录*/
+				case 10001:
+					trace("发送消息，申请登录");
+					client.writeBoolean(true);
+					client.flush();
+					break;
+				case 10002:
+					break;
+			}
 			
 		}
 		
@@ -35,14 +47,15 @@ package com.leeGame.netBusiness
 		protected function onReceiveData(event:ProgressEvent):void
 		{
 			trace("ClientSocket.onReceiveData(event)");
+			MyFacade.getInstance().sendNotification(LoginResultCommand.NAME,{result:1});
 		}
 		
 		private function addEventListeners():void
 		{
-			clientSocket.addEventListener(Event.CONNECT,onConnected);
-			clientSocket.addEventListener(ProgressEvent.SOCKET_DATA,onReceiveData);
-			clientSocket.addEventListener(IOErrorEvent.IO_ERROR,onIOError);
-			clientSocket.addEventListener(SecurityErrorEvent.SECURITY_ERROR,onSecurityError);
+			client.addEventListener(Event.CONNECT,onConnected);
+			client.addEventListener(ProgressEvent.SOCKET_DATA,onReceiveData);
+			client.addEventListener(IOErrorEvent.IO_ERROR,onIOError);
+			client.addEventListener(SecurityErrorEvent.SECURITY_ERROR,onSecurityError);
 		}
 		
 		private static var _instance:ClientSocket;

@@ -16,8 +16,9 @@ package com.leeGame.models
 		public function login(vo:LoginVo):void
 		{
 			data = vo;
-trace("开始登录",data.name);
-			ClientSocket.getInstance().sendMessage();
+trace(data.name);
+/* 申请登录*/
+			ClientSocket.getInstance().sendMessage(10001,vo);
 		}
 	}
 }

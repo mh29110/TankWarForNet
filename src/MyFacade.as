@@ -2,6 +2,7 @@ package
 {
 	import com.leeGame.config.CommandName;
 	import com.leeGame.controllers.InitViewCommand;
+	import com.leeGame.controllers.LoginResultCommand;
 	import com.leeGame.controllers.LoginTryCommand;
 	import com.leeGame.controllers.StartUpCommand;
 	
@@ -21,6 +22,7 @@ package
 			registerCommand(CommandName.STARTUPCOMMAND,StartUpCommand);
 			registerCommand(InitViewCommand.INITVIEWCOMMAND,InitViewCommand);
 			registerCommand(LoginTryCommand.NAME,LoginTryCommand);
+			registerCommand(LoginResultCommand.NAME,LoginResultCommand);
 		}
 		public static function getInstance():MyFacade{
 			if(instance == null){

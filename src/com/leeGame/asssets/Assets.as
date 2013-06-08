@@ -9,6 +9,7 @@ package com.leeGame.asssets
 	{
 		public function Assets()
 		{
+			
 		}
 
 		

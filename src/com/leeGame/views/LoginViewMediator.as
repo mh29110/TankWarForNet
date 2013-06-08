@@ -1,5 +1,6 @@
 package com.leeGame.views
 {
+	import com.leeGame.controllers.LoginResultCommand;
 	import com.leeGame.controllers.LoginTryCommand;
 	import com.leeGame.models.data.LoginVo;
 	import com.leeGame.views.components.LoginView;
@@ -38,12 +39,29 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			super.handleNotification(notification);
+			switch(notification.getBody().result){
+				case 0:
+					trace("视图改变，登录失败");
+					break;
+				case 1:
+					trace("视图改变，登录成功");
+					facade.removeMediator(NAME);
+					break;
+			}
 		}
 		
 		override public function listNotificationInterests():Array
 		{
-			return super.listNotificationInterests();
+			return [LoginResultCommand.NAME];
+		}
+		
+		override public function onRemove():void
+		{
+			super.onRemove();
+			
+			if(loginView.parent){
+				loginView.parent.removeChild(loginView);
+			}
 		}
 		
 	}
