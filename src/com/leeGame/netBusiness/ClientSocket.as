@@ -25,6 +25,9 @@ package com.leeGame.netBusiness
 			client.connect("127.0.0.1",5566);
 		}
 		public function sendMessage(cmd:uint,vo:Object):void{
+			/* 在家里测试时 ，先不写通信*/
+			MyFacade.getInstance().sendNotification(LoginResultCommand.NAME,{result:1});
+			
 			if(client.connected == false){
 				return ;
 			}

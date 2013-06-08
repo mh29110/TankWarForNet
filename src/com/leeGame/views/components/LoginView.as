@@ -6,13 +6,10 @@ package com.leeGame.views.components
 	
 	import feathers.controls.Button;
 	import feathers.controls.Label;
+	import feathers.controls.Screen;
 	import feathers.controls.TextInput;
 	
-	import starling.display.Sprite;
-	
-	
-	
-	public class LoginView extends Sprite
+	public class LoginView extends Screen
 	{
 		public function LoginView()
 		{
@@ -20,6 +17,9 @@ package com.leeGame.views.components
 			initView();
 		}
 		public var nameTxt:TextInput;
+		
+		public var loginBtn:Button ;//登录按钮
+		
 		private function initView():void
 		{
 			var label:Label = new Label();
@@ -40,7 +40,8 @@ package com.leeGame.views.components
 			loginBtn.x = label.x ;
 			loginBtn.y = label.y + 30;
 			addChild(loginBtn);
+			
 		}
-		public var loginBtn:Button ;//登录按钮
+		
 	}
 }

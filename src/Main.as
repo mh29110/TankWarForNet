@@ -4,9 +4,11 @@ package
 	
 	import com.leeGame.asssets.Assets;
 	import com.leeGame.config.CommandName;
+	import com.leeGame.managers.ScreenManager;
 	import com.leeGame.netBusiness.ClientSocket;
 	
 	import feathers.controls.Button;
+	import feathers.controls.ScreenNavigator;
 	import feathers.themes.AeonDesktopTheme;
 	
 	import flash.filesystem.File;
@@ -41,6 +43,8 @@ package
 			/*initialize feathers theme!*/
 			this.theme = new AeonDesktopTheme(this.stage);
 			
+			/* screens navigator */
+			
 			
 			/*initialize pureMvc frameWork*/
 			MyFacade.getInstance().startUp(this);
@@ -55,8 +59,11 @@ package
 			assets.enqueue(
 				"superman.jpg"
 			);
-			assets.loadQueue(function():void{
-				trace("loaded a jpg");	
+			assets.loadQueue(function(ratio:Number):void{//侦听下载比例
+				trace(ratio);
+				if(ratio == 1){
+					trace("load complete");
+				}
 			}
 			);
 			

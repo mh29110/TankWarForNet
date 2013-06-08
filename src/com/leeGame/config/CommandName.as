@@ -8,16 +8,6 @@ package com.leeGame.config
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		public function CommandName()
 		{
 		}

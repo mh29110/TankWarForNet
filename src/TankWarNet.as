@@ -2,6 +2,8 @@ package
 {
 	import avmplus.getQualifiedClassName;
 	
+	import com.leeGame.managers.ScreenManager;
+	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -29,6 +31,7 @@ package
 		private var starling:Starling;
 		protected function onInit(event:Event):void
 		{
+			removeChild(preImg);
 			trace("flash sprite initialize!");
 			
 			stage.align = StageAlign.TOP_LEFT;
@@ -37,10 +40,10 @@ package
 			starling = new Starling(Main,stage);
 			starling.start();
 			starling.showStats = true;
+			starling.showStatsAt("right");
+			Global._stage = starling.stage;
 			
-			removeChild(preImg);
-			
-			stage.addEventListener(MouseEvent.CLICK,onClicked);
+			stage.addEventListener(MouseEvent.CLICK,onClicked);//for test
 		}
 		
 		protected function onClicked(event:MouseEvent):void
