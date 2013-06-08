@@ -1,5 +1,6 @@
 package com.leeGame.controllers
 {
+	import com.leeGame.models.DataProxy;
 	import com.leeGame.models.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -16,6 +17,7 @@ package com.leeGame.controllers
 		{
 			super.execute(notification);
 			facade.registerProxy(new LoginProxy(LoginProxy.NAME));
+			facade.registerProxy(new DataProxy());
 		}
 		
 	}

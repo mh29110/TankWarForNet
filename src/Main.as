@@ -60,9 +60,6 @@ package
 			}
 			);
 			
-			
-			var img:Image = new Image(Assets.getTexture("BallGround"));
-			addChild(img);
 		}
 	}
 }

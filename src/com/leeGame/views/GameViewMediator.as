@@ -5,6 +5,9 @@ package com.leeGame.views
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import starling.events.KeyboardEvent;
+	import starling.events.TouchEvent;
+	
 	public class GameViewMediator extends Mediator
 	{
 		public static var NAME:String = "game view mediator name";
@@ -12,7 +15,20 @@ package com.leeGame.views
 		{
 			super(mediatorName, viewComponent);
 			
+			gameView.stage.addEventListener(KeyboardEvent.KEY_DOWN,_keydown);
 			
+			gameView.addEventListener(TouchEvent.TOUCH,onTouch);
+				
+		}
+		
+		private function onTouch(e:TouchEvent):void
+		{
+			trace(e.data);
+		}
+		
+		private function _keydown(e:KeyboardEvent):void
+		{
+			trace(e.keyCode, String.fromCharCode(e.charCode));
 		}
 		
 		public function get gameView():GameView
@@ -22,13 +38,11 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			// TODO Auto Generated method stub
 			super.handleNotification(notification);
 		}
 		
 		override public function listNotificationInterests():Array
 		{
-			// TODO Auto Generated method stub
 			return super.listNotificationInterests();
 		}
 		

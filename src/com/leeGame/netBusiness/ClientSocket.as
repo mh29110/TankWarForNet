@@ -25,6 +25,9 @@ package com.leeGame.netBusiness
 			client.connect("127.0.0.1",5566);
 		}
 		public function sendMessage(cmd:uint,vo:Object):void{
+			if(client.connected == false){
+				return ;
+			}
 			/* 发送数据 */
 			switch (cmd){
 				/* 10001 申请登录*/

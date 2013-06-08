@@ -39,13 +39,14 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			switch(notification.getBody().result){
-				case 0:
-					trace("视图改变，登录失败");
-					break;
-				case 1:
-					trace("视图改变，登录成功");
-					facade.removeMediator(NAME);
+			switch(notification.getName()){
+				case LoginResultCommand.NAME:
+					if(notification.getBody().result == 1){
+						trace("视图改变，登录成功");
+						facade.removeMediator(NAME);
+					}else{
+						trace("视图改变，登录失败");
+					}
 					break;
 			}
 		}

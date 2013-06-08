@@ -23,12 +23,6 @@ package com.leeGame.controllers
 			super.execute(notification);
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			loginProxy.login(notification.getBody() as LoginVo);
-			
-			
-			
-			var img:Image = new Image(Main.assets.getTexture("superman"));
-			img.x = img.y = 200;
-			facade.retrieveMediator(AppMediator.Name).getViewComponent().addChild(img);
 		}
 		
 	}

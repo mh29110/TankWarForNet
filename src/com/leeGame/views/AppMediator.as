@@ -37,7 +37,7 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
-			switch(notification.getBody()){
+			switch(notification.getName()){
 				case LoginResultCommand.NAME:
 					if(notification.getBody().result == 1){
 						var game:GameView = new GameView();
