@@ -1,6 +1,7 @@
 package com.leeGame.models
 {
 	import com.leeGame.models.data.LoginVo;
+	import com.leeGame.netBusiness.ClientSocket;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -16,6 +17,7 @@ package com.leeGame.models
 		{
 			data = vo;
 trace("开始登录",data.name);
+			ClientSocket.getInstance().sendMessage();
 		}
 	}
 }
