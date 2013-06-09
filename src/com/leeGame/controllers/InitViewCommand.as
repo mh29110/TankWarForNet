@@ -1,6 +1,7 @@
 package com.leeGame.controllers
 {
 	import com.leeGame.views.AppMediator;
+	import com.leeGame.views.BulletsMediator;
 	import com.leeGame.views.LoginViewMediator;
 	import com.leeGame.views.components.LoginView;
 	

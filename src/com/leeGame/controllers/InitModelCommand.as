@@ -19,7 +19,7 @@ package com.leeGame.controllers
 			super.execute(notification);
 			facade.registerProxy(new LoginProxy(LoginProxy.NAME));
 			facade.registerProxy(new DataProxy());
-			facade.registerProxy(new PlayerVOProxy());
+			
 		}
 		
 	}

@@ -50,6 +50,7 @@ package
 			assets = new AssetManager();
 			assets.verbose = true ;
 			assets.enqueue(	"superman.jpg");
+			assets.enqueue(	"tankers.png");
 			assets.loadQueue(function(ratio:Number):void{//侦听下载比例
 				trace(ratio);
 				if(ratio == 1){

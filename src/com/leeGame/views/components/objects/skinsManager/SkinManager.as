@@ -44,7 +44,7 @@ package com.leeGame.views.components.objects.skinsManager
 		{
 			p= new Point(0,0);
 			skinIndex = skin_index;
-			src= Main.assets.getTexture("superman");//源位图
+			src= Main.assets.getTexture("tankers");//源位图
 			switch (skinIndex)//万恶的源图排序混乱，只能单个表示，最好排序并用编号提出，避免写SWITCH；
 			{
 				case SkinManager.PLAYER:

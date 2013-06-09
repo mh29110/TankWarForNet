@@ -43,6 +43,7 @@ package com.leeGame.views
 						var game:GameView = new GameView();
 						appMain.addChild(game);
 						facade.registerMediator(new GameViewMediator(GameViewMediator.NAME,game));
+						facade.registerMediator(new BulletsMediator(BulletsMediator.NAME,game));
 					}
 					break;
 			}

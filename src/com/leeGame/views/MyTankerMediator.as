@@ -1,7 +1,7 @@
 package com.leeGame.views
 {
-	import com.leeGame.controllers.UserOperaterCommand;
 	import com.leeGame.models.PlayerVOProxy;
+	import com.leeGame.models.data.PlayerVo;
 	import com.leeGame.views.components.objects.Player;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -30,9 +30,14 @@ package com.leeGame.views
 		
 		override public function handleNotification(notification:INotification):void
 		{
+			var playerVo:PlayerVo = (facade.retrieveProxy(PlayerVOProxy.NAME) as PlayerVOProxy).playerVo;
 			switch(notification.getName()){
 				case PlayerVOProxy.CHANGEDIR:
-					player.dir = (facade.retrieveProxy(PlayerVOProxy.NAME) as PlayerVOProxy).playerVo.dir;
+					player.dir = playerVo.dir;
+					break;
+				case PlayerVOProxy.MYPLAYERMOVE:
+					player.x = playerVo.x ;
+					player.y = playerVo.y;
 					break;
 			}
 		}
@@ -40,7 +45,7 @@ package com.leeGame.views
 		
 		override public function listNotificationInterests():Array
 		{
-			return [PlayerVOProxy.CHANGEDIR];
+			return [PlayerVOProxy.CHANGEDIR,PlayerVOProxy.MYPLAYERMOVE];
 		}
 		
 		override public function onRemove():void

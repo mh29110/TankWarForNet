@@ -4,7 +4,9 @@ package com.leeGame.models.data
 	{
 		public var x:Number ;
 		public var y:Number ;
-		public var dir:uint;
+		public var dir:uint = 87;
+		
+		public var speed:Number = 3;
 		
 		
 		public function PlayerVo()

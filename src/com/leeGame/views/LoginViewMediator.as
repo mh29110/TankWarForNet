@@ -59,7 +59,7 @@ package com.leeGame.views
 		override public function onRemove():void
 		{
 			super.onRemove();
-			
+			loginView.loginBtn.removeEventListener(Event.TRIGGERED,onTriggered);
 			if(loginView.parent){
 				loginView.parent.removeChild(loginView);
 			}
